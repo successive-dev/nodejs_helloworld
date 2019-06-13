@@ -1,7 +1,6 @@
 {
   "name": "nodejs_helloworld",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/successive-dev/nodejs_helloworld/issues"
   },
-  "homepage": "https://github.com/successive-dev/nodejs_helloworld#readme"
+  "homepage": "https://github.com/successive-dev/nodejs_helloworld#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "description": ""
 }
