@@ -1,12 +1,27 @@
 const { events, Job } = require("brigadier");
 
-events.on("simpleevent", (e, p) => {  // handler for a SimpleEvent
-  var echo = new Job("build", "alpine:3.8");
-  echo.tasks = [
-    "ls -lart"
+events.on("simpleevent", (e, p) => {
+
+  var packageJob = new Job("package", "docker:dind");
+  packageJob.privileged = true;
+  packageJob.env = {
+    DOCKER_DRIVER: driver
+  }
+  packageJob.tasks = [
+    "dockerd-entrypoint.sh &",
+    "sleep 20",
+    "docker --help",
   ];
-  echo.env = {
-    "EVENT_TYPE": e.type
-  };
-  echo.run();
+
+  docker.run()
+
+  // var deployJob = new Job("build", "alpine/helm");
+  // deployJob.tasks = [
+  //   "cd src",
+  //   "ls -lart"
+  // ];
+  // deployJob.env = {
+  //   "EVENT_TYPE": e.type
+  // };
+  // deployJob.run();
 });
