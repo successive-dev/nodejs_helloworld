@@ -15,8 +15,6 @@ events.on("simpleevent", (e, p) => {
 
     var package = new Job("package", "localhost:5000/docker");
     package.tasks = [
-      "dockerd-entrypoint.sh &",
-      "sleep 20",
       "docker ps",
     ];
 
