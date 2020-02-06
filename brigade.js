@@ -2,15 +2,15 @@ const { events, Job } = require("brigadier");
 
 events.on("simpleevent", (e, p) => {
 
-  // var deployJob = new Job("build", "alpine");
-  // deployJob.tasks = [
-  //   "cd src",
-  //   "ls -lart"
-  // ];
-  // deployJob.env = {
-  //   "EVENT_TYPE": e.type
-  // };
-  // deployJob.run();
+  var deployJob = new Job("build", "alpine");
+  deployJob.tasks = [
+    "cd src",
+    "ls -lart"
+  ];
+  deployJob.env = {
+    "EVENT_TYPE": e.type
+  };
+  deployJob.run();
   try {
 
     var packageJob = new Job("package", "docker:dind");
