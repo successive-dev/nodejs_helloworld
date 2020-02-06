@@ -14,6 +14,8 @@ events.on("simpleevent", (e, p) => {
   try {
 
     var package = new Job("package", "localhost:5000/docker");
+    package.docker.enabled = true
+
     package.tasks = [
       "docker images",
     ];
