@@ -2,6 +2,16 @@ const { events, Job } = require("brigadier");
 
 events.on("simpleevent", (e, p) => {
 
+  var deployJob = new Job("build", "alpine");
+  deployJob.tasks = [
+    "cd src",
+    "ls -lart"
+  ];
+  deployJob.env = {
+    "EVENT_TYPE": e.type
+  };
+  deployJob.run();
+
   var packageJob = new Job("package", "docker:dind");
   packageJob.privileged = true;
   packageJob.env = {
@@ -14,14 +24,4 @@ events.on("simpleevent", (e, p) => {
   ];
 
   packageJob.run()
-
-  // var deployJob = new Job("build", "alpine/helm");
-  // deployJob.tasks = [
-  //   "cd src",
-  //   "ls -lart"
-  // ];
-  // deployJob.env = {
-  //   "EVENT_TYPE": e.type
-  // };
-  // deployJob.run();
 });
