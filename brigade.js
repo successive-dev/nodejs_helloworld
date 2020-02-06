@@ -2,29 +2,29 @@ const { events, Job } = require("brigadier");
 
 events.on("simpleevent", (e, p) => {
 
-  var deployJob = new Job("build", "alpine");
-  deployJob.tasks = [
-    "cd src",
-    "ls -lart"
-  ];
-  deployJob.env = {
-    "EVENT_TYPE": e.type
-  };
-  deployJob.run();
+  // var deployJob = new Job("build", "alpine");
+  // deployJob.tasks = [
+  //   "cd src",
+  //   "ls -lart"
+  // ];
+  // deployJob.env = {
+  //   "EVENT_TYPE": e.type
+  // };
+  // deployJob.run();
   try {
 
-    var packageJob = new Job("package", "docker:dind");
-    packageJob.privileged = true;
-    packageJob.env = {
+    var package = new Job("package", "docker:dind");
+    package.privileged = true;
+    package.env = {
       DOCKER_DRIVER: "overlay"
     }
-    packageJob.tasks = [
+    package.tasks = [
       "dockerd-entrypoint.sh &",
       "sleep 20",
       "docker ps",
     ];
 
-    packageJob.run()
+    package.run()
   } catch (e) {
     console.log(e)
   }
