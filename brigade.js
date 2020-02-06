@@ -13,11 +13,7 @@ events.on("simpleevent", (e, p) => {
   // deployJob.run();
   try {
 
-    var package = new Job("package", "docker:dind");
-    package.privileged = true;
-    package.env = {
-      DOCKER_DRIVER: "overlay"
-    }
+    var package = new Job("package", "docker");
     package.tasks = [
       "dockerd-entrypoint.sh &",
       "sleep 20",
