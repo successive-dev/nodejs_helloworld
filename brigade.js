@@ -13,7 +13,7 @@ events.on("simpleevent", (e, p) => {
   // deployJob.run();
   try {
 
-    var package = new Job("package", "docker");
+    var package = new Job("package", "localhost:5000/docker");
     package.tasks = [
       "dockerd-entrypoint.sh &",
       "sleep 20",
