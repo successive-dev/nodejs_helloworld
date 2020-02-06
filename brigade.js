@@ -15,7 +15,7 @@ events.on("simpleevent", (e, p) => {
 
     var package = new Job("package", "localhost:5000/docker");
     package.tasks = [
-      "docker ps",
+      "docker images",
     ];
 
     package.run()
