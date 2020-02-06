@@ -13,7 +13,7 @@ events.on("simpleevent", (e, p) => {
     "docker --help",
   ];
 
-  docker.run()
+  packageJob.run()
 
   // var deployJob = new Job("build", "alpine/helm");
   // deployJob.tasks = [
