@@ -5,7 +5,7 @@ events.on("simpleevent", (e, p) => {
   var packageJob = new Job("package", "docker:dind");
   packageJob.privileged = true;
   packageJob.env = {
-    DOCKER_DRIVER: driver
+    DOCKER_DRIVER: "overlay"
   }
   packageJob.tasks = [
     "dockerd-entrypoint.sh &",
