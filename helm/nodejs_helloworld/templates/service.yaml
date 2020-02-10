@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nodejs_helloworld.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "nodejs_helloworld.name" . }}
+    helm.sh/chart: {{ include "nodejs_helloworld.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "nodejs_helloworld.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
