@@ -9,6 +9,7 @@ events.on("simpleevent", async (e, p) => {
   buildJob.tasks = [
     "cd src",
     "ls -lart",
+    "git tag -l",
     agis.fetchTagBumpItAndPushIt(),
     agis.tarSharedDir(),
   ];
