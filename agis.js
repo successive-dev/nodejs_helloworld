@@ -1,4 +1,4 @@
-const SHARED_DIR = 'mnt/brigade/share'
+const SHARED_DIR = '/mnt/brigade/share'
 
 function tarSharedDir() {
   return `tar -cf ${SHARED_DIR}`
