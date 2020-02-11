@@ -30,7 +30,10 @@ function bumpTag(VERSION_INDEX = 2) {
 }
 
 function pushExportedTag() {
-  return `git push origin tag $APP_VER\n`
+  return [
+    `git tag $APP_VER`,
+    `git push origin tag $APP_VER`,
+  ].join("\n")
 }
 
 function fetchTagBumpItAndPushIt() {
