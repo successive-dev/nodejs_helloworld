@@ -22,11 +22,11 @@ function exportTag() {
 function bumpTag(VERSION_INDEX = 2) {
   return [
     `IFS='.' read -ra APP_VER_TOKENIZED <<<"$APP_VER"`,
-    'APP_VER_TOKENIZED[$VERSION_INDEX]=$(( APP_VER_TOKENIZED[$VERSION_INDEX] + 1))',
+    `APP_VER_TOKENIZED[${VERSION_INDEX}]=$(( APP_VER_TOKENIZED[${VERSION_INDEX}] + 1))`,
     'APP_VER=${APP_VER_TOKENIZED[0]}.${APP_VER_TOKENIZED[1]}.${APP_VER_TOKENIZED[2]}',
     `echo $APP_VER > ${SHARED_DIR}/APP_SEM_VER.txt`,
     `echo Bumped Tag is && cat ${SHARED_DIR}/APP_SEM_VER.txt`
-  ].join('\n')
+  ].join("\n")
 }
 
 function pushExportedTag() {
@@ -39,7 +39,7 @@ function fetchTagBumpItAndPushIt() {
     exportTag(),
     bumpTag(),
     pushExportedTag()
-  ]
+  ].join("\n")
 }
 
 function packageJob(reg, name) {
@@ -62,5 +62,7 @@ module.exports = {
   tarSharedDir,
   restoreSharedDir,
   packageJob,
-  fetchTagBumpItAndPushIt
+  fetchTagBumpItAndPushIt,
+  fetchLatestGitTag,
+  bumpTag
 }
