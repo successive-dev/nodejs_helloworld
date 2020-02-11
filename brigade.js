@@ -12,5 +12,5 @@ events.on("simpleevent", async (e, p) => {
   ];
 
   await buildJob.run();
-  await agis.packageJob('localhost:5000').run()
+  await agis.packageJob('localhost:5000', 'helloworldapp').run()
 });
