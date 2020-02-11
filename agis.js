@@ -1,7 +1,15 @@
 const SHARED_DIR = '/mnt/brigade/share'
 
 function tarSharedDir() {
-  return `tar -cf ${SHARED_DIR}\n`
+  return `tar -cf sharedDir.tar ${SHARED_DIR}\n`
+}
+
+function tarCurrentDir() {
+  return `tar -cf currentDir.tar *\n`
+}
+
+function moveTarsToSharedDir() {
+  return `mv *.tar ${SHARED_DIR}`
 }
 
 function restoreSharedDir() {

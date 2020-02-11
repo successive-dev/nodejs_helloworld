@@ -8,6 +8,7 @@ events.on("simpleevent", async (e, p) => {
   buildJob.shell = '/bin/bash';
   buildJob.tasks = [
     "cd src",
+    "ls -lart",
     agis.fetchTagBumpItAndPushIt(),
     agis.tarSharedDir(),
   ];
