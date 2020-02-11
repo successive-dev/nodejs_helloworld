@@ -12,7 +12,7 @@ function fetchLatestGitTag() {
   return [
     `git tag -l | tail -n 1 > echo > ${SHARED_DIR}/APP_SEM_VER.txt`,
     `echo Current Tag is && cat ${SHARED_DIR}/APP_SEM_VER.txt`
-  ]
+  ].join('\n')
 }
 
 function exportTag() {
@@ -30,9 +30,7 @@ function bumpTag(VERSION_INDEX = 2) {
 }
 
 function pushExportedTag() {
-  return [
-    `git push origin tag $APP_VER`
-  ]
+  return `git push origin tag $APP_VER`
 }
 
 function fetchTagBumpItAndPushIt() {
