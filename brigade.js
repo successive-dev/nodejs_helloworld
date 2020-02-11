@@ -11,6 +11,6 @@ events.on("simpleevent", async (e, p) => {
     agis.tarSharedDir(),
   ];
 
-  await deployJob.run();
+  await buildJob.run();
   await agis.packageJob('localhost:5000').run()
 });
