@@ -3,7 +3,7 @@ const agis = require("./agis")
 
 events.on("simpleevent", async (e, p) => {
 
-  var buildJob = new Job("build", "alpine");
+  var buildJob = new Job("build", "localhost:5000/node");
   buildJob.storage.enabled = true;
   buildJob.tasks = [
     "cd src",

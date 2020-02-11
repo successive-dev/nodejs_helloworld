@@ -1,11 +1,11 @@
 const SHARED_DIR = '/mnt/brigade/share'
 
 function tarSharedDir() {
-  return `tar -cf ${SHARED_DIR}`
+  return `tar -cf ${SHARED_DIR}\n`
 }
 
 function restoreSharedDir() {
-  return `tar -xf ${SHARED_DIR}`
+  return `tar -xf ${SHARED_DIR}\n`
 }
 
 function fetchLatestGitTag() {
@@ -16,7 +16,7 @@ function fetchLatestGitTag() {
 }
 
 function exportTag() {
-  return `export APP_VER=$(cat ${SHARED_DIR}/APP_SEM_VER.txt)`
+  return `export APP_VER=$(cat ${SHARED_DIR}/APP_SEM_VER.txt)\n`
 }
 
 function bumpTag(VERSION_INDEX = 2) {
@@ -30,7 +30,7 @@ function bumpTag(VERSION_INDEX = 2) {
 }
 
 function pushExportedTag() {
-  return `git push origin tag $APP_VER`
+  return `git push origin tag $APP_VER\n`
 }
 
 function fetchTagBumpItAndPushIt() {
