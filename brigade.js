@@ -11,7 +11,7 @@ events.on("simpleevent", async (e, p) => {
     "ls -lart",
     "git tag -l",
     "git config --global credential.helper 'store --file .git-credentials'",
-    `echo https://vishu42:VC,,%,{nNUeY3&2U@gitea-tooling.az.devops.gdpdentsu.net > ~/.git-credentials`,
+    `echo https://vishu42:VC,,%,{nNUeY3&2U@gitea-tooling.az.devops.gdpdentsu.net > .git-credentials`,
     agis.fetchTagBumpItAndPushIt(),
     agis.tarSharedDir(),
   ];
