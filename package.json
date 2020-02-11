@@ -1,24 +1,24 @@
 {
-  "name": "nodejs_helloworld",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/successive-dev/nodejs_helloworld/issues"
   },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "description": "",
+  "devDependencies": {},
+  "homepage": "https://github.com/successive-dev/nodejs_helloworld#readme",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "nodejs_helloworld",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/successive-dev/nodejs_helloworld.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/successive-dev/nodejs_helloworld/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" \u0026\u0026 exit 1"
   },
-  "homepage": "https://github.com/successive-dev/nodejs_helloworld#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "devDependencies": {},
-  "description": ""
+  "version": "1.1.0"
 }

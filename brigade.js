@@ -1,27 +1,16 @@
 const { events, Job } = require("brigadier");
+const agis = require("./agis")
 
-events.on("simpleevent", async(e, p) => {
+events.on("simpleevent", async (e, p) => {
 
-  var deployJob = new Job("build", "alpine");
-  deployJob.storage.enabled = true;
-  deployJob.tasks = [
+  var buildJob = new Job("build", "alpine");
+  buildJob.storage.enabled = true;
+  buildJob.tasks = [
     "cd src",
-    "cp helloworld.js /mnt/brigade/share/"
+    agis.fetchTagBumpItAndPushIt(),
+    agis.tarSharedDir(),
   ];
-  deployJob.env = {
-    "EVENT_TYPE": e.type
-  };
 
-
-
-  var package = new Job("package", "localhost:5000/docker");
-  package.docker.enabled = true;
-  package.storage.enabled = true;
-
-  package.tasks = [
-    "cat /mnt/brigade/share/helloworld.js",
-  ];
   await deployJob.run();
-  await package.run()
-
+  await agis.packageJob('localhost:5000').run()
 });
