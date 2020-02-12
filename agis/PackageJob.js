@@ -1,8 +1,8 @@
 const { events, Job } = require("brigadier");
-const { BuildTask } = require("./index");
+const BuildTask = require("./BuildTask");
 
 class PackageJob {
-  static pack(reg, name, file='Dockerfile') {
+  static pack(reg, name, file = 'Dockerfile') {
     var packageJob = new Job("package", "localhost:5000/docker");
     packageJob.docker.enabled = true;
     packageJob.storage.enabled = true;
