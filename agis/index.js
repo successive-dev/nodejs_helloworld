@@ -1,4 +1,4 @@
 module.exports = {
-  BuildTask: require('./BuildTasks'),
-  PackageJob: require('./PackageJobs'),
+  BuildTask: require('./BuildTask'),
+  PackageJob: require('./PackageJob'),
 }

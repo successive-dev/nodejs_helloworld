@@ -1,4 +1,4 @@
-var agis = require("./agis/BuildTasks")
+var agis = require("./agis/BuildTask")
 
 // console.log(agis.tarSharedDir())
 // console.log(agis.restoreSharedDir())

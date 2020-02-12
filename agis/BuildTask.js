@@ -1,4 +1,4 @@
-class BuildTasks {
+class BuildTask {
 
   SHARED_DIR = '/mnt/brigade/share'
 
@@ -6,7 +6,7 @@ class BuildTasks {
     return `tar -cf sharedDir.tar ${SHARED_DIR}\n`
   }
 
-  static tarBuild(exclusion=".git", tarName='build.tar') {
+  static tarBuild(exclusion = ".git", tarName = 'build.tar') {
     return `tar --exclude="${exclusion}" -cf ${tarName} *\n`
   }
 
@@ -14,7 +14,7 @@ class BuildTasks {
     return `mv *.tar ${SHARED_DIR}`
   }
 
-  static restoreBuild(tarName='build.tar') {
+  static restoreBuild(tarName = 'build.tar') {
     return `tar -xf ${SHARED_DIR}/${tarName}\n`
   }
 
@@ -55,6 +55,5 @@ class BuildTasks {
     ].join("\n")
   }
 }
-module.exports = {
-  BuildTasks
-}
+
+module.exports = BuildTask
