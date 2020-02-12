@@ -12,7 +12,7 @@ class PackageJob {
       BuildTask.exportTag(),
       "echo $APP_VER",
       `docker build -f ${file} . -t ${reg}/${name}:$APP_VER`,
-      `docker push ${reg}/${name}:APP_VER`,
+      `docker push ${reg}/${name}:$APP_VER`,
     ];
     return packageJob;
   }
