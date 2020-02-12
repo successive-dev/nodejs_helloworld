@@ -10,6 +10,7 @@ class PackageJob {
       `mkdir /app && cd /app`, // set /app as working dir
       BuildTask.restoreBuild(),
       BuildTask.exportTag(),
+      "echo $APP_SEM_VER",
       `docker build -f ${file} . -t ${reg}/${name}:$APP_SEM_VER`,
       `docker push ${reg}/${name}:APP_SEM_VER`,
     ];
