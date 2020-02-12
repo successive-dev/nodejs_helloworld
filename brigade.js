@@ -22,5 +22,5 @@ events.on("simpleevent", async (e, p) => {
   ];
   console.log("================Project===================", p)
   await buildJob.run();
-  await PackageJob.packageJob('localhost:5000', 'helloworldapp').run();
+  await PackageJob.pack('localhost:5000', 'helloworldapp').run();
 });
