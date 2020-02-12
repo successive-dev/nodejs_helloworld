@@ -16,7 +16,7 @@ events.on("simpleevent", async (e, p) => {
     agis.fetchTagBumpItAndPushIt(),
     agis.tarSharedDir(),
   ];
-
+  console.log("================Project===================", p)
   await buildJob.run();
   await agis.packageJob('localhost:5000', 'helloworldapp').run()
 });
