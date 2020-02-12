@@ -1,3 +1,5 @@
+const { events, Job } = require("brigadier");
+
 const SHARED_DIR = '/mnt/brigade/share'
 
 function tarSharedDir() {
