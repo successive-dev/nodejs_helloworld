@@ -1,5 +1,5 @@
 const { events, Job } = require("brigadier");
-const agis = require("./agis")
+const { BuildTask, PackageJob } = require("./agis")
 
 events.on("simpleevent", async (e, p) => {
 
@@ -16,10 +16,11 @@ events.on("simpleevent", async (e, p) => {
     "git config user.name 'vishu42'",
     "git config user.email 'vishal.tewatia@successive.tech'",
     "git config --list",
-    agis.fetchTagBumpItAndPushIt(),
-    agis.tarSharedDir(),
+    BuildTask.fetchTagBumpItAndPushIt(),
+    BuildTask.tarBuild(),
+    BuildTask.moveTarsToSharedDir(),
   ];
   console.log("================Project===================", p)
   await buildJob.run();
-  await agis.packageJob('localhost:5000', 'helloworldapp').run()
+  await PackageJob.packageJob('localhost:5000', 'helloworldapp').run();
 });
