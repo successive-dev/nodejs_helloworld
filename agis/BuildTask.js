@@ -1,3 +1,5 @@
+const SHARED_DIR = '/mnt/brigade/share';
+
 class BuildTask {
 
   static tarSharedDir() {
@@ -53,7 +55,5 @@ class BuildTask {
     ].join("\n")
   }
 }
-
-BuildTask.SHARED_DIR = '/mnt/brigade/share';
 
 module.exports = BuildTask
