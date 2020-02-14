@@ -20,7 +20,7 @@ class BuildTask {
 
   static fetchLatestGitTag() {
     return [
-      `git tag -l | tail -n 1 > echo > ${SHARED_DIR}/APP_SEM_VER.txt`,
+      `git describe --tags --abbrev=0 > echo > ${SHARED_DIR}/APP_SEM_VER.txt`,
       `echo Current Tag is && cat ${SHARED_DIR}/APP_SEM_VER.txt`
     ].join('\n')
   }
