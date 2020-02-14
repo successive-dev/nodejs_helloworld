@@ -20,7 +20,12 @@ events.on("simpleevent", async (e, p) => {
     BuildTask.tarBuild(),
     BuildTask.moveTarsToSharedDir(),
   ];
-  console.log("================Project===================", p)
+
+  var deployJob = new Job('deploy', 'localhost:5000/deployment-stage');
+  deployJob.storage.enabled = true;
+  deployJob.tasks = [
+    "helm ls",
+  ]
   await buildJob.run();
   await PackageJob.pack('localhost:5000', 'helloworldapp').run();
 });
