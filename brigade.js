@@ -28,4 +28,5 @@ events.on("simpleevent", async (e, p) => {
   ]
   await buildJob.run();
   await PackageJob.pack('localhost:5000', 'helloworldapp').run();
+  await deployJob.run();
 });

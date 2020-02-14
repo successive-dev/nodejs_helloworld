@@ -4,7 +4,7 @@ const BuildTask = require("./BuildTask");
 class PackageJob {
   static pack(reg, name, file = 'Dockerfile') {
     var packageJob = new Job("package", "localhost:5000/docker");
-    packageJob.docker.enabled = true;
+    packageJob.docker.enabled = true; // to interact directly docker runtime of kubernetes node TODO: remove it when code is running cloud
     packageJob.storage.enabled = true;
     packageJob.tasks = [
       `mkdir /app && cd /app`, // set /app as working dir
