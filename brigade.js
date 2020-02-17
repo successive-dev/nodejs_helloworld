@@ -1,5 +1,5 @@
 const { events, Job } = require("brigadier");
-const { BuildTask, PackageJob } = require("./agis")
+const { BuildTask, PackageJob, DeployJob } = require("./agis")
 
 events.on("simpleevent", async (e, p) => {
 
@@ -21,12 +21,18 @@ events.on("simpleevent", async (e, p) => {
     BuildTask.moveTarsToSharedDir(),
   ];
 
-  var deployJob = new Job('deploy', 'localhost:5000/deployment-stage');
-  deployJob.storage.enabled = true;
-  deployJob.tasks = [
-    "helm ls",
-  ]
+  function deploy() {
+    var deployJob = new DeployJob(e, p)
+    values = {
+      node_env = 'dev',
+      image = {
+        repository: `localhost:5000/${p.secrets.app-name}`,
+        tag: `$APP_VER`,
+      }
+    }
+    return deployJob.deploy(`kube-ecosystem01-dev`, values)
+  }
   await buildJob.run();
   await PackageJob.pack('localhost:5000', 'helloworldapp').run();
-  await deployJob.run();
+  await deploy.run();
 });
