@@ -2,11 +2,11 @@
 project: "vishu42/nodejs_helloworld"
 
 ## Domain/Org/Project
-repository: "github.com/vishu42/nodejs_helloworld"
+repository: "github.com/vishu42/nodejshelloworld"
 
 ## The definitive clone URL. This can be any Git-supported URL format.
 ## You may set this to "" for no clone URL.
-cloneURL: "https://github.com/vishu42/nodejs_helloworld.git"
+cloneURL: "https://github.com/vishu42/nodejshelloworld.git"
 
 ## OPTIONAL: initGitSubmodules will recursively initialize all submodules in the repository. Default: false
 # initGitSubmodules: "false"
