@@ -24,8 +24,8 @@ events.on("simpleevent", async (e, p) => {
   function deploy() {
     var deployJob = new DeployJob(e, p)
     values = {
-      node_env = 'dev',
-      image = {
+      node_env : 'dev',
+      image : {
         repository: `localhost:5000/${p.secrets.app-name}`,
         tag: `$APP_VER`,
       }
