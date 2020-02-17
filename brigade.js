@@ -25,7 +25,7 @@ events.on("simpleevent", async (e, p) => {
   values = {
     node_env: 'dev',
     image: {
-      repository: `localhost:5000/${p.secrets.app - name}`,
+      repository: `localhost:5000/${p.secrets.app-name}`,
       tag: `$APP_VER`,
     }
   }
