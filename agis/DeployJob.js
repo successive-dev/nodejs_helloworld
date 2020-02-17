@@ -16,6 +16,7 @@ class DeployJob {
       // TODO: there should be a cluster login function here - skipping this as of now
       "cd src",
       BuildTask.exportTag(),
+      "helm version",
       helmUpgradeCommand(values, this.p.secrets.appName, `./helm/${this.p.secrets.appName}`, deployEnvironment)
     ]
     return deployJob;
