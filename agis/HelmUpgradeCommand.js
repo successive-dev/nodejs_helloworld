@@ -17,8 +17,7 @@ function helmUpgradeCommand(values, release, chart, ns) {
     command += `--set ${k}=${values[k]} \\\n`
   }
   command += `${release} ${chart} --namespace ${ns}`
-  console.log(command)
   return command
 }
 
-module.export = helmUpgradeCommand
+module.exports = helmUpgradeCommand
