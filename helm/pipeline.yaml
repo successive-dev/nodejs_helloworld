@@ -79,7 +79,7 @@ github:
 ##
 ## Inside of the job's pod, $MY_ENV_VAR = "super awesome"
 secrets:
-  app-name: nodejshelloworld
+  appName: nodejshelloworld
 
 ## OPTIONAL: vcsSidecar is the image that fetches a repo from a VCS
 ## The default sidecar uses Git to fetch a copy of the project.
