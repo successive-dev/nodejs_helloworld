@@ -21,18 +21,16 @@ events.on("simpleevent", async (e, p) => {
     BuildTask.moveTarsToSharedDir(),
   ];
 
-  function deploy() {
-    var deployJob = new DeployJob(e, p)
-    values = {
-      node_env : 'dev',
-      image : {
-        repository: `localhost:5000/${p.secrets.app-name}`,
-        tag: `$APP_VER`,
-      }
+  // Deployment envs
+  values = {
+    node_env: 'dev',
+    image: {
+      repository: `localhost:5000/${p.secrets.app - name}`,
+      tag: `$APP_VER`,
     }
-    return deployJob.deploy(`kube-ecosystem01-dev`, values)
   }
+
   await buildJob.run();
   await PackageJob.pack('localhost:5000', 'helloworldapp').run();
-  await deploy.run();
+  await DeployJob.deploy(`kube-ecosystem01-dev`, values).run();
 });
