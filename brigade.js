@@ -31,6 +31,6 @@ events.on("simpleevent", async (e, p) => {
   }
 
   await buildJob.run();
-  await PackageJob.pack('localhost:5000', 'helloworldapp').run();
+  await PackageJob.pack('localhost:5000', p.secrets.appName).run();
   await new DeployJob(e, p).deploy(`kube-ecosystem01-dev`, values).run();
 });
