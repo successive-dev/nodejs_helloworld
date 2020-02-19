@@ -14,6 +14,7 @@ class DeployJob {
     deployJob.storage.enabled = true
     deployJob.tasks = [
       // TODO: there should be a cluster login function here - skipping this as of now
+      "ls -lart",
       "cd src",
       BuildTask.exportTag(),
       "helm version",
