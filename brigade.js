@@ -2,7 +2,7 @@ const { events, Job } = require("brigadier");
 const { BuildTask, PackageJob, DeployJob } = require("./agis")
 
 events.on("simpleevent", async (e, p) => {
-  console.log(e.payload.event)
+  console.log(e.payload)
   if (e.payload.event == 'push') {
     var buildJob = new Job("build", "localhost:5000/node");
     buildJob.storage.enabled = true;
