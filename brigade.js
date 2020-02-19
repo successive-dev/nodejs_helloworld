@@ -4,7 +4,7 @@ const { BuildTask, PackageJob, DeployJob } = require("./agis")
 events.on("simpleevent", async (e, p) => {
   payload = JSON.parse(e.payload);
   console.log(payload.event)
-  if (e.payload.event == 'push') {
+  if (payload.event == 'push') {
     var buildJob = new Job("build", "localhost:5000/node");
     buildJob.storage.enabled = true;
     buildJob.shell = '/bin/bash';
@@ -38,9 +38,10 @@ events.on("simpleevent", async (e, p) => {
   }
 });
 
-// events.on("simpleevent", async (e, p) => {
-//   if (e.payload.event == 'deploy') {
-//     await new DeployJob(e, p).deploy(e.payload.deployTo, values).run()
-//   }
-// })
+events.on("simpleevent", async (e, p) => {
+  payload = JSON.parse(e.payload);
+  if (payload.event == 'deploy') {
+    await new DeployJob(e, p).deploy(e.payload.deployTo, values).run()
+  }
+})
 
