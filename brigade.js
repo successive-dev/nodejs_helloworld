@@ -37,9 +37,9 @@ events.on("simpleevent", async (e, p) => {
   }
 });
 
-events.on("simpleevent", async (e, p) => {
-  if (e.payload.event == 'deploy') {
-    await new DeployJob(e, p).deploy(e.payload.deployTo, values).run()
-  }
-})
+// events.on("simpleevent", async (e, p) => {
+//   if (e.payload.event == 'deploy') {
+//     await new DeployJob(e, p).deploy(e.payload.deployTo, values).run()
+//   }
+// })
 
