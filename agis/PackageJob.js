@@ -7,6 +7,7 @@ class PackageJob {
     packageJob.docker.enabled = true; // to interact directly docker runtime of kubernetes node TODO: remove it when code is running cloud
     packageJob.storage.enabled = true;
     packageJob.tasks = [
+      'ls -lart',
       `mkdir /app && cd /app`, // set /app as working dir
       BuildTask.restoreBuild(),
       BuildTask.exportTag(),
