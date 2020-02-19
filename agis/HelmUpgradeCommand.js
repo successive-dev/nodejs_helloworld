@@ -12,11 +12,11 @@ function flattenObj(obj, parent, res = {}) {
 
 function helmUpgradeCommand(values, release, chart, ns) {
   values = flattenObj(values)
-  let command = "helm upgrade --install \\\n";
+  let command = "helm upgrade \\\n";
   for (k in values) {
     command += `--set ${k}=${values[k]} \\\n`
   }
-  command += `${release} ${chart} --namespace ${ns}`
+  command += `--namespace ${ns} --install ${release} ${chart}`
   return command
 }
 
