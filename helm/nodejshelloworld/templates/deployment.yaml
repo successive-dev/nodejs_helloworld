@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "nodejs_helloworld.fullname" . }}
+  name: {{ include "nodejshelloworld.fullname" . }}
   labels:
-    app.kubernetes.io/name: {{ include "nodejs_helloworld.name" . }}
-    helm.sh/chart: {{ include "nodejs_helloworld.chart" . }}
+    app.kubernetes.io/name: {{ include "nodejshelloworld.name" . }}
+    helm.sh/chart: {{ include "nodejshelloworld.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "nodejs_helloworld.name" . }}
+      app.kubernetes.io/name: {{ include "nodejshelloworld.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "nodejs_helloworld.name" . }}
+        app.kubernetes.io/name: {{ include "nodejshelloworld.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:

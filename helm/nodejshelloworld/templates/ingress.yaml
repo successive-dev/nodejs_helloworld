@@ -1,13 +1,13 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "nodejs_helloworld.fullname" . -}}
+{{- $fullName := include "nodejshelloworld.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app.kubernetes.io/name: {{ include "nodejs_helloworld.name" . }}
-    helm.sh/chart: {{ include "nodejs_helloworld.chart" . }}
+    app.kubernetes.io/name: {{ include "nodejshelloworld.name" . }}
+    helm.sh/chart: {{ include "nodejshelloworld.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}
