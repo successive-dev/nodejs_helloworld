@@ -19,7 +19,7 @@ class DeployJob {
       "cd /src",
       BuildTask.exportTag(),
       "helm version",
-      helmUpgradeCommand(values, this.p.secrets.appName, `./helm/${this.p.secrets.appName}`, deployEnvironment)
+      helmUpgradeCommand(values, `${deployEnvironment}-${this.p.secrets.appName}`, `./helm/${this.p.secrets.appName}`, deployEnvironment)
     ]
     return deployJob;
   }
