@@ -35,7 +35,7 @@ async function deployTo(e, p, deployEnv) {
 }
 
 Events.onPush(async (e, p) => {
-  await build.run();
+  console.log(build.run);
   await PackageJob.pack('localhost:5000', p.secrets.appName).run();
   await deployTo(`kube-ecosystem01-dev`).run();
 })
