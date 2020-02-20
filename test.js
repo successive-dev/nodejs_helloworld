@@ -1,16 +1,3 @@
-var agis = require("./agis/BuildTask")
-
-// console.log(agis.tarSharedDir())
-// console.log(agis.restoreSharedDir())
-
-function shellScript() {
-  return [
-    'a',
-    'b',
-    'c',
-  ].join("\n")
-}
-console.log([
-  shellScript(),
-  "1"
-  ])
+const deployEnvironment = 'kube-ecosystem01-dev'
+const deployEnvSuffix = deployEnvironment.split('-').pop()
+console.log(deployEnvSuffix)
