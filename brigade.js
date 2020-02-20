@@ -1,38 +1,37 @@
 const { events, Job } = require("brigadier");
 const { BuildTask, PackageJob, DeployJob, Events } = require("./agis")
 
-Events.onPush(async (e, p) => {
-  var buildJob = new Job("build", "localhost:5000/node");
-  buildJob.storage.enabled = true;
-  buildJob.shell = '/bin/bash';
-  buildJob.tasks = [
-    "cd src",
-    "ls -lart",
-    "git tag -l",
-    "git config --global credential.helper 'store --file .git-credentials'",
-    `echo 'https://vishu42:VC,,%,{nNUeY3&2U@github.com' > .git-credentials`,
-    `git remote add origin ${p.repo.cloneURL}`,
-    "git config user.name 'vishu42'",
-    "git config user.email 'vishal.tewatia@successive.tech'",
-    "git config --list",
-    BuildTask.fetchTagBumpItAndPushIt(),
-    BuildTask.tarBuild(),
-    BuildTask.moveTarsToSharedDir(),
-  ];
+var buildJob = new Job("build", "localhost:5000/node");
+buildJob.storage.enabled = true;
+buildJob.shell = '/bin/bash';
+buildJob.tasks = [
+  "cd src",
+  "ls -lart",
+  "git tag -l",
+  "git config --global credential.helper 'store --file .git-credentials'",
+  `echo 'https://vishu42:VC,,%,{nNUeY3&2U@github.com' > .git-credentials`,
+  `git remote add origin ${p.repo.cloneURL}`,
+  "git config user.name 'vishu42'",
+  "git config user.email 'vishal.tewatia@successive.tech'",
+  "git config --list",
+  BuildTask.fetchTagBumpItAndPushIt(),
+  BuildTask.tarBuild(),
+  BuildTask.moveTarsToSharedDir(),
+];
 
-  async function deployTo(e, p, deployEnv) {
-    // Deployment envs
-    values = {
-      node_env: 'dev',
-      image: {
-        repository: `localhost:5000/${p.secrets.appName}`,
-        tag: `$APP_VER`,
-      }
+async function deployTo(e, p, deployEnv) {
+  // Deployment envs
+  values = {
+    node_env: 'dev',
+    image: {
+      repository: `localhost:5000/${p.secrets.appName}`,
+      tag: `$APP_VER`,
     }
-    return await new DeployJob(e, p).deploy(deployEnv, values);
   }
+  return await new DeployJob(e, p).deploy(deployEnv, values);
+}
 
-
+Events.onPush(async (e, p) => {
   await buildJob.run();
   await PackageJob.pack('localhost:5000', p.secrets.appName).run();
   await deployTo(`kube-ecosystem01-dev`).run();
@@ -41,4 +40,5 @@ Events.onPush(async (e, p) => {
 // Events.onDeploy(async (e, p) => {
 //   await deployTo(e, p, `kube-ecosystem01-test`).run();
 // })
+
 
