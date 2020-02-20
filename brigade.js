@@ -1,41 +1,50 @@
 const { events, Job } = require("brigadier");
 const { BuildTask, PackageJob, DeployJob, Events } = require("./agis")
 
-async function build(e, p) {
-  var buildJob = new Job("build", "localhost:5000/node");
-  buildJob.storage.enabled = true;
-  buildJob.shell = '/bin/bash';
-  buildJob.tasks = [
-    "cd src",
-    "ls -lart",
-    "git tag -l",
-    "git config --global credential.helper 'store --file .git-credentials'",
-    `echo 'https://vishu42:VC,,%,{nNUeY3&2U@github.com' > .git-credentials`,
-    `git remote add origin ${p.repo.cloneURL}`,
-    "git config user.name 'vishu42'",
-    "git config user.email 'vishal.tewatia@successive.tech'",
-    "git config --list",
-    BuildTask.fetchTagBumpItAndPushIt(),
-    BuildTask.tarBuild(),
-    BuildTask.moveTarsToSharedDir(),
-  ];
-  return buildJob
-}
+class Pipeline {
 
-async function deployTo(e, p, deployEnv) {
-  // Deployment envs
-  values = {
-    node_env: 'dev',
-    image: {
-      repository: `localhost:5000/${p.secrets.appName}`,
-      tag: `$APP_VER`,
-    }
+  constructor(e, p) {
+    this.e = e;
+    this.p = p;
   }
-  return await new DeployJob(e, p).deploy(deployEnv, values);
+
+  async build() {
+    var buildJob = new Job("build", "localhost:5000/node");
+    buildJob.storage.enabled = true;
+    buildJob.shell = '/bin/bash';
+    buildJob.tasks = [
+      "cd src",
+      "ls -lart",
+      "git tag -l",
+      "git config --global credential.helper 'store --file .git-credentials'",
+      `echo 'https://vishu42:VC,,%,{nNUeY3&2U@github.com' > .git-credentials`,
+      `git remote add origin ${this.p.repo.cloneURL}`,
+      "git config user.name 'vishu42'",
+      "git config user.email 'vishal.tewatia@successive.tech'",
+      "git config --list",
+      BuildTask.fetchTagBumpItAndPushIt(),
+      BuildTask.tarBuild(),
+      BuildTask.moveTarsToSharedDir(),
+    ];
+    return buildJob
+  }
+
+  async deployTo(deployEnv) {
+    // Deployment envs
+    values = {
+      node_env: 'dev',
+      image: {
+        repository: `localhost:5000/${this.p.secrets.appName}`,
+        tag: `$APP_VER`,
+      }
+    }
+    return await new DeployJob(this.e, this.p).deploy(deployEnv, values);
+  }
 }
 
 Events.onPush(async (e, p) => {
-  console.log(build.run);
+  const pipeline = new Pipeline(e, p)
+  await pipeline.build().run()
   await PackageJob.pack('localhost:5000', p.secrets.appName).run();
   await deployTo(`kube-ecosystem01-dev`).run();
 })
