@@ -30,7 +30,7 @@ class BuildTask {
     ].join('\n')
   }
 
-  static exportTag() {
+  exportTag() {
     if (this.e.payload.app_ver) {
       return `export APP_VER=${app_ver}\n`
     } else {
