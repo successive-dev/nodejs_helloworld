@@ -32,7 +32,7 @@ class BuildTask {
 
   exportTag() {
     if (this.e.payload.app_ver) {
-      return `export APP_VER=${app_ver}\n`
+      return `export APP_VER=${this.e.payload.app_ver}\n`
     } else {
       return `export APP_VER=$(cat ${SHARED_DIR}/APP_SEM_VER.txt)\n`
     }
