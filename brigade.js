@@ -51,7 +51,7 @@ Events.onPush(async (e, p) => {
 
 Events.onDeploy(async (e, p) => {
   const pipeline = new Pipeline(e, p)
-  await pipeline.deployTo(e, p, `kube-ecosystem01-test`).run();
+  await pipeline.deployTo(`kube-ecosystem01-test`).run();
 })
 
 
