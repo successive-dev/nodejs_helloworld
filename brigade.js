@@ -20,24 +20,25 @@ Events.onPush(async (e, p) => {
     BuildTask.moveTarsToSharedDir(),
   ];
 
-  // Deployment envs
-  values = {
-    node_env: 'dev',
-    image: {
-      repository: `localhost:5000/${p.secrets.appName}`,
-      tag: `$APP_VER`,
+  async function deployTo(e, p, deployEnv) {
+    // Deployment envs
+    values = {
+      node_env: 'dev',
+      image: {
+        repository: `localhost:5000/${p.secrets.appName}`,
+        tag: `$APP_VER`,
+      }
     }
+    return await new DeployJob(e, p).deploy(deployEnv, values);
   }
+
 
   await buildJob.run();
   await PackageJob.pack('localhost:5000', p.secrets.appName).run();
-  await new DeployJob(e, p).deploy(`kube-ecosystem01-dev`, values).run();
+  await deployTo(`kube-ecosystem01-dev`).run();
 })
 
-events.on("simpleevent", async (e, p) => {
-  payload = JSON.parse(e.payload);
-  if (payload.event == 'deploy') {
-    await new DeployJob(e, p).deploy(e.payload.deployTo, values).run()
-  }
+Events.onDeploy((e, p) => {
+  await deployTo(e, p, `kube-ecosystem01-test`).run();
 })
 
