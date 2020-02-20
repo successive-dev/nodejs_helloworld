@@ -31,7 +31,7 @@ class Pipeline {
 
   deployTo(deployEnv) {
     // Deployment envs
-    values = {
+    const values = {
       node_env: 'dev',
       image: {
         repository: `localhost:5000/${this.p.secrets.appName}`,
