@@ -2,6 +2,11 @@ const SHARED_DIR = '/mnt/brigade/share';
 
 class BuildTask {
 
+  constructor(e, p) {
+    this.e = e;
+    this.p = p;
+  }
+
   static tarSharedDir() {
     return `tar -cf sharedDir.tar ${SHARED_DIR}\n`
   }
@@ -26,7 +31,11 @@ class BuildTask {
   }
 
   static exportTag() {
-    return `export APP_VER=$(cat ${SHARED_DIR}/APP_SEM_VER.txt)\n`
+    if (this.e.payload.app_ver) {
+      return `export APP_VER=${app_ver}\n`
+    } else {
+      return `export APP_VER=$(cat ${SHARED_DIR}/APP_SEM_VER.txt)\n`
+    }
   }
 
   static bumpTag(VERSION_INDEX = 2) {

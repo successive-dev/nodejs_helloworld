@@ -18,7 +18,7 @@ class DeployJob {
       "pwd",
       "ls -lart",
       "cd /src",
-      BuildTask.exportTag(),
+      new BuildTask(this.e, this.p).exportTag(),
       "helm version",
       helmUpgradeCommand(values, `${deployEnvironment}-${this.p.secrets.appName}`, `./helm/${this.p.secrets.appName}`, deployEnvironment)
     ]
