@@ -1,7 +1,7 @@
 const { events } = require("brigadier");
 
 class Events {
-  async static onPush(fn) {
+  static async onPush(fn) {
     events.on("simpleevent", async (e, p) => {
       payload = JSON.parse(e.payload)
       if (payload.event === 'push') {
@@ -9,7 +9,7 @@ class Events {
       }
     })
   }
-  async static onDeploy(fn) {
+  static async onDeploy(fn) {
     events.on("simpleevent", async (e, p) => {
       payload = JSON.parse(e.payload)
       if (payload.event === 'deploy') {
