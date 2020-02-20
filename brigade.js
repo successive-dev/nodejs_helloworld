@@ -8,7 +8,7 @@ class Pipeline {
     this.p = p;
   }
 
-  async build() {
+  build() {
     var buildJob = new Job("build", "localhost:5000/node");
     buildJob.storage.enabled = true;
     buildJob.shell = '/bin/bash';
@@ -29,7 +29,7 @@ class Pipeline {
     return buildJob
   }
 
-  async deployTo(deployEnv) {
+  deployTo(deployEnv) {
     // Deployment envs
     values = {
       node_env: 'dev',
@@ -38,7 +38,7 @@ class Pipeline {
         tag: `$APP_VER`,
       }
     }
-    return await new DeployJob(this.e, this.p).deploy(deployEnv, values);
+    return new DeployJob(this.e, this.p).deploy(deployEnv, values);
   }
 }
 
@@ -46,7 +46,7 @@ Events.onPush(async (e, p) => {
   const pipeline = new Pipeline(e, p)
   await pipeline.build().run()
   await PackageJob.pack('localhost:5000', p.secrets.appName).run();
-  await deployTo(`kube-ecosystem01-dev`).run();
+  await pipeline.deployTo(`kube-ecosystem01-dev`).run();
 })
 
 // Events.onDeploy(async (e, p) => {
