@@ -1,7 +1,7 @@
 const { events, Job } = require("brigadier");
 const { BuildTask, PackageJob, DeployJob, Events } = require("./agis")
 
-Events.onPush((e, p) => {
+Events.onPush(async (e, p) => {
   var buildJob = new Job("build", "localhost:5000/node");
   buildJob.storage.enabled = true;
   buildJob.shell = '/bin/bash';
