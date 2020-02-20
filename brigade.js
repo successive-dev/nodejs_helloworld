@@ -38,7 +38,7 @@ Events.onPush(async (e, p) => {
   await deployTo(`kube-ecosystem01-dev`).run();
 })
 
-Events.onDeploy((e, p) => {
+Events.onDeploy(async (e, p) => {
   await deployTo(e, p, `kube-ecosystem01-test`).run();
 })
 
