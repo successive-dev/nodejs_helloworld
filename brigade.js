@@ -1,5 +1,5 @@
 const { events, Job } = require("brigadier");
-const { BuildTask, PackageJob, DeployJob, Events } = require("./agis")
+const { BuildTask, PackageJob, DeployJob, Events, Scriptor } = require("agis")
 
 class Pipeline {
 
@@ -12,7 +12,7 @@ class Pipeline {
     var buildJob = new Job("build", "localhost:5000/node");
     buildJob.storage.enabled = true;
     buildJob.shell = '/bin/bash';
-    buildJob.tasks = [
+    console.log(new Scriptor([
       "cd src",
       "ls -lart",
       "git tag -l",
@@ -24,7 +24,21 @@ class Pipeline {
       "git config --list",
       BuildTask.fetchTagBumpItAndPushIt(),
       BuildTask.tarBuild(),
-      BuildTask.moveTarsToSharedDir(),
+      BuildTask.moveTarsToSharedDir()]).tasks())
+    buildJob.tasks = [
+      new Scriptor([
+        "cd src",
+        "ls -lart",
+        "git tag -l",
+        "git config --global credential.helper 'store --file .git-credentials'",
+        `echo 'https://vishu42:VC,,%,{nNUeY3&2U@github.com' > .git-credentials`,
+        `git remote add origin ${this.p.repo.cloneURL}`,
+        "git config user.name 'vishu42'",
+        "git config user.email 'vishal.tewatia@successive.tech'",
+        "git config --list",
+        BuildTask.fetchTagBumpItAndPushIt(),
+        BuildTask.tarBuild(),
+        BuildTask.moveTarsToSharedDir()]).tasks()
     ];
     return buildJob
   }
