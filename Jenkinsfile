@@ -9,7 +9,11 @@ pipeline {
     stage('build build-scripts') {
       steps {
         nodejs('nodejs') {
-          sh '''#list dir contents
+          sh '''#check node version
+nodejs --version
+node --version
+
+#list dir contents
 ls -lart
 
 ##set git config
