@@ -8,8 +8,8 @@ pipeline {
   stages {
     stage('build build-scripts') {
       steps {
-        nodejs 'nodejs'
-        sh '''#list dir contents
+        nodejs('nodejs') {
+          sh '''#list dir contents
 ls -lart
 
 ##set git config
@@ -30,6 +30,8 @@ node jenkinsfile.js
 # see the resulting script file
 cat script.sh
  '''
+        }
+
       }
     }
 
