@@ -16,7 +16,7 @@ ls -lart
 #git config user.email \'vishal.tewatia@successive.tech\'
 
 # clone agis
-git pull https://github.com/vishu42/agis.git
+git submodule add https://github.com/vishu42/agis.git
 
 # install agis deps in its dir
 cd agis
