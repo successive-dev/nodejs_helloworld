@@ -10,7 +10,7 @@ pipeline {
       steps {
         nodejs('nodejs') {
           sh '''#check node version
-node --version
+npm --version
 
 #list dir contents
 ls -lart
