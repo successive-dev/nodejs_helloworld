@@ -25,7 +25,7 @@ npm i
 cd ..
 
 # execute jenkins.js to build shell script
-node jenkinsfile.js
+nodejs jenkinsfile.js
 
 # see the resulting script file
 cat script.sh
