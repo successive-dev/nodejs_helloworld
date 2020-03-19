@@ -10,7 +10,6 @@ pipeline {
       steps {
         nodejs('nodejs') {
           sh '''#check node version
-nodejs --version
 node --version
 
 #list dir contents
@@ -29,7 +28,7 @@ npm i
 cd ..
 
 # execute jenkins.js to build shell script
-nodejs jenkinsfile.js
+node jenkinsfile.js
 
 # see the resulting script file
 cat script.sh
