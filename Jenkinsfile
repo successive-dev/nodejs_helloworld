@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('build build-scripts') {
       steps {
+        nodejs 'node'
         sh '''#list dir contents
 ls -lart
 
