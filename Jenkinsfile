@@ -12,8 +12,7 @@ pipeline {
 rm -rf agis
 
 # clone agis
-git pull https://github.com/vishu42/agis.git --allow-unrelated-histories
-
+git pull https://github.com/vishu42/agis.git
 # install agis deps in its dir
 cd agis
 npm i
