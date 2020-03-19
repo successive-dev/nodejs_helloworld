@@ -8,7 +8,10 @@ pipeline {
   stages {
     stage('build build-scripts') {
       steps {
-        sh '''##set git config
+        sh '''#list dir contents
+ls -lart
+
+##set git config
 #git config user.name \'vishu42\'
 #git config user.email \'vishal.tewatia@successive.tech\'
 
