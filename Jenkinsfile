@@ -9,7 +9,7 @@ pipeline {
     stage('build build-scripts') {
       steps {
         sh '''# clone agis
-git pull https://github.com/vishu42/agis.git
+git pull https://github.com/vishu42/agis.git --allow-unrelated-histories
 
 # install agis deps in its dir
 cd agis
