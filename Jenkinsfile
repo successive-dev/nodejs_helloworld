@@ -8,7 +8,10 @@ pipeline {
   stages {
     stage('build build-scripts') {
       steps {
-        sh '''# clone agis
+        sh '''#remove existing agis if it does
+rm -rf agis
+
+# clone agis
 git pull https://github.com/vishu42/agis.git --allow-unrelated-histories
 
 # install agis deps in its dir
