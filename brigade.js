@@ -1,6 +1,7 @@
 const { events, Job } = require("brigadier");
 const { BuildTask, PackageJob, DeployJob, Events, Scriptor } = require("agis")
 
+
 class Pipeline {
 
   constructor(e, p) {
